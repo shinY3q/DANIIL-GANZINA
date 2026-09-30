@@ -100,7 +100,7 @@
 
 .contact__socials {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
   gap: 1px;
   width: 100%;
   margin: clamp(38px, 6vh, 68px) 0 0;
@@ -209,12 +209,6 @@
 
 .contact__footer a:hover .contact__top-arrow {
   transform: translate(2px, -2px);
-}
-
-@media (max-width: 900px) {
-  .contact__socials {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 640px) {

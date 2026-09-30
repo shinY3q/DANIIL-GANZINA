@@ -4,13 +4,11 @@
  */
 
 export const CONTACT = {
-  email: 'hello@daniilganzina.com',
-  location: 'Minsk, BY — working worldwide',
+  email: 'd.ganzina@gmail.com',
+  location: 'Kyiv, UA — working worldwide',
   socials: [
-    { label: 'Telegram', href: 'https://t.me/daniilganzina', handle: '@daniilganzina' },
-    { label: 'Behance', href: 'https://behance.net/daniilganzina', handle: '/daniilganzina' },
-    { label: 'Dribbble', href: 'https://dribbble.com/daniilganzina', handle: '/daniilganzina' },
-    { label: 'Instagram', href: 'https://instagram.com/daniilganzina', handle: '@daniilganzina' }
+    { label: 'Telegram', href: 'https://t.me/d25400', handle: '@d25400' },
+    { label: 'Instagram', href: 'https://instagram.com/danilganzina', handle: '@danilganzina' }
   ]
 };
 
