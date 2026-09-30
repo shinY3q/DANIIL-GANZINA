@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { CONTACT, NAV } from '../../data/site.js';
+import { sectionHref } from '../../utils/navigation.js';
 import './Nav.css';
 
 const NAV_LOGO = `${import.meta.env.BASE_URL}images/daniil-ganzina-logo-nav.png`;
@@ -32,7 +33,12 @@ export default function Nav({ activeId }) {
   return (
     <>
       <header className={`nav${scrolled ? ' is-scrolled' : ''}`}>
-        <a className="nav__mark" href="#top" aria-label="Daniil Ganzina — back to top">
+        <a
+          className="nav__mark"
+          href={sectionHref('top')}
+          data-section="top"
+          aria-label="Daniil Ganzina — back to top"
+        >
           <span className="nav__mark-crop">
             <img src={NAV_LOGO} alt="" />
           </span>
@@ -42,7 +48,8 @@ export default function Nav({ activeId }) {
           {NAV.map(item => (
             <a
               key={item.id}
-              href={`#${item.id}`}
+              href={sectionHref(item.id)}
+              data-section={item.id}
               className={activeId === item.id ? 'is-active' : undefined}
               aria-current={activeId === item.id ? 'true' : undefined}
             >
@@ -72,7 +79,12 @@ export default function Nav({ activeId }) {
       >
         <nav aria-label="Mobile">
           {NAV.map(item => (
-            <a key={item.id} href={`#${item.id}`} onClick={() => setMenuOpen(false)}>
+            <a
+              key={item.id}
+              href={sectionHref(item.id)}
+              data-section={item.id}
+              onClick={() => setMenuOpen(false)}
+            >
               <span>{item.index}</span>
               {item.label}
             </a>

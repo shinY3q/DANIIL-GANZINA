@@ -1,4 +1,5 @@
 import { CONTACT, HERO } from '../../data/site.js';
+import { sectionHref } from '../../utils/navigation.js';
 import './Hero.css';
 
 const FULL_LOGO = `${import.meta.env.BASE_URL}images/daniil-ganzina-logo.png`;
@@ -28,7 +29,7 @@ export default function Hero() {
         <p className="hero__description">{HERO.description}</p>
 
         <div className="hero__actions">
-          <a className="btn btn--primary chamfer" href="#work">
+          <a className="btn btn--primary chamfer" href={sectionHref('work')} data-section="work">
             <span>View work</span>
             <ArrowIcon />
           </a>

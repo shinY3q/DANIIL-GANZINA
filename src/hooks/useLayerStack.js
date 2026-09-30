@@ -1,21 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-const clamp01 = value => (value < 0 ? 0 : value > 1 ? 1 : value);
+import { measureSectionTops } from '../utils/navigation.js';
 
-/**
- * Distance from the top of the document to an element's *flow* position.
- * getBoundingClientRect() would report where a pinned sticky element is
- * painted, not where it belongs in the flow, so walk offsetParent instead.
- */
-const flowTop = element => {
-  let top = 0;
-  let node = element;
-  while (node) {
-    top += node.offsetTop;
-    node = node.offsetParent;
-  }
-  return top;
-};
+const clamp01 = value => (value < 0 ? 0 : value > 1 ? 1 : value);
 
 /**
  * Drives the sticky "sheet" stack.
@@ -35,8 +22,9 @@ export default function useLayerStack() {
 
   const measure = useCallback(() => {
     const layers = Array.from(document.querySelectorAll('.layer'));
+    const sectionTops = measureSectionTops();
     layersRef.current = layers;
-    topsRef.current = layers.map(flowTop);
+    topsRef.current = layers.map(layer => sectionTops.get(layer.id) ?? 0);
   }, []);
 
   const update = useCallback(() => {

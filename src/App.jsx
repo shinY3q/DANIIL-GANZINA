@@ -10,6 +10,7 @@ import Work from './components/Work/Work.jsx';
 import { LAYERS } from './data/site.js';
 import useLayerStack from './hooks/useLayerStack.js';
 import useReveal from './hooks/useReveal.js';
+import useSectionNavigation from './hooks/useSectionNavigation.js';
 
 const Dwell = () => <span className="dwell" aria-hidden="true" />;
 
@@ -24,6 +25,7 @@ const Dwell = () => <span className="dwell" aria-hidden="true" />;
 export default function App() {
   const active = useLayerStack();
   useReveal();
+  useSectionNavigation();
 
   return (
     <>

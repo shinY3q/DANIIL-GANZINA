@@ -1,4 +1,5 @@
 import { WORK } from '../../data/site.js';
+import { SECTION_IDS, sectionHref } from '../../utils/navigation.js';
 import './Work.css';
 
 function ArrowIcon() {
@@ -36,7 +37,11 @@ export default function Work() {
               data-reveal
               style={{ '--reveal-delay': `${140 + i * 90}ms` }}
             >
-              <a href={project.href} className="work__link">
+              <a
+                href={SECTION_IDS.includes(project.href) ? sectionHref(project.href) : project.href}
+                data-section={SECTION_IDS.includes(project.href) ? project.href : undefined}
+                className="work__link"
+              >
                 <span className="work__index">{project.index}</span>
 
                 <span className="work__title">

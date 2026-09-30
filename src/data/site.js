@@ -60,7 +60,7 @@ export const WORK = {
       summary:
         'A full visual system for an audio hardware studio — monogram, motion grammar and a WebGL product configurator.',
       tags: ['Identity', 'WebGL', 'Art direction'],
-      href: '#contact',
+      href: 'contact',
       tone: 'a'
     },
     {
@@ -71,7 +71,7 @@ export const WORK = {
       summary:
         'Design system and marketing site for a logistics platform. 68 components, one shared token layer, dark by default.',
       tags: ['Design system', 'React', 'Web'],
-      href: '#contact',
+      href: 'contact',
       tone: 'b'
     },
     {
@@ -82,7 +82,7 @@ export const WORK = {
       summary:
         'Wordmark, packaging and campaign direction for a small-batch fragrance house. Built to survive both foil and favicon.',
       tags: ['Identity', 'Print', 'Campaign'],
-      href: '#contact',
+      href: 'contact',
       tone: 'c'
     },
     {
@@ -93,7 +93,7 @@ export const WORK = {
       summary:
         'A generative live-visual engine driven by audio input, performed across four venues and shipped as a web toy.',
       tags: ['GLSL', 'Three.js', 'Motion'],
-      href: '#contact',
+      href: 'contact',
       tone: 'd'
     }
   ]

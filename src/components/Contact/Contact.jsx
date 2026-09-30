@@ -1,4 +1,5 @@
 import { CONTACT, CTA } from '../../data/site.js';
+import { sectionHref } from '../../utils/navigation.js';
 import './Contact.css';
 
 function ArrowIcon({ className = 'btn__arrow' }) {
@@ -54,7 +55,7 @@ export default function Contact() {
         <footer className="contact__footer">
           <p>&copy; {new Date().getFullYear()} Daniil Ganzina</p>
           <p>{CONTACT.location}</p>
-          <a href="#top">
+          <a href={sectionHref('top')} data-section="top">
             Back to top
             <ArrowIcon className="contact__top-arrow" />
           </a>
