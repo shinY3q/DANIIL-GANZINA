@@ -1,0 +1,237 @@
+.contact {
+  position: relative;
+  z-index: 1;
+  justify-content: flex-end;
+  padding-bottom: clamp(28px, 4vh, 48px);
+}
+
+/*
+ * The closing layer has no sheet — the light field shows through it — so its
+ * leading edge is drawn as a bare hairline on the same diagonal the opaque
+ * sheets are cut on.
+ */
+.contact::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: calc(var(--slant) + 2px);
+  background: linear-gradient(
+    100deg,
+    rgba(200, 166, 255, 0.06) 0%,
+    rgba(200, 166, 255, 0.5) 58%,
+    rgba(168, 85, 247, 0.9) 100%
+  );
+  clip-path: polygon(0 var(--slant), 100% 0, 100% 1.5px, 0 calc(var(--slant) + 1.5px));
+  pointer-events: none;
+  content: '';
+}
+
+.contact__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.contact__title {
+  margin: 24px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7.4vw, 118px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.contact__title span {
+  display: block;
+}
+
+.contact__title span:last-child {
+  color: var(--lav);
+}
+
+.contact__body {
+  margin-top: clamp(24px, 3vh, 34px);
+}
+
+/* ---------- the big address ---------- */
+
+.contact__email {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 28px);
+  margin-top: clamp(30px, 4vh, 48px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-lav);
+  color: var(--text-1);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3.1vw, 46px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  transition: color 280ms var(--ease), border-color 280ms var(--ease);
+}
+
+.contact__email:hover {
+  color: var(--lav);
+  border-color: var(--lav);
+}
+
+.contact__email-arrow {
+  flex: none;
+  width: clamp(20px, 2.4vw, 34px);
+  height: clamp(20px, 2.4vw, 34px);
+  fill: none;
+  stroke: var(--lav);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 320ms var(--ease);
+}
+
+.contact__email:hover .contact__email-arrow {
+  transform: translate(5px, -5px);
+}
+
+/* ---------- socials ---------- */
+
+.contact__socials {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  width: 100%;
+  margin: clamp(38px, 6vh, 68px) 0 0;
+  padding: 0;
+  background: var(--line);
+  list-style: none;
+}
+
+.contact__socials a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(18px, 2vw, 26px) clamp(14px, 1.6vw, 22px);
+  background: rgba(5, 5, 7, 0.72);
+  text-decoration: none;
+  transition: background-color 340ms var(--ease);
+}
+
+.contact__socials a:hover {
+  background: rgba(20, 12, 34, 0.9);
+}
+
+.contact__social-label {
+  color: var(--text-1);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.contact__social-handle {
+  color: var(--text-3);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  transition: color 320ms var(--ease);
+}
+
+.contact__socials a:hover .contact__social-handle {
+  color: var(--lav);
+}
+
+.contact__social-arrow {
+  position: absolute;
+  top: clamp(16px, 1.8vw, 22px);
+  right: clamp(14px, 1.6vw, 20px);
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: var(--text-3);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 320ms var(--ease), stroke 320ms var(--ease);
+}
+
+.contact__socials a:hover .contact__social-arrow {
+  stroke: var(--lav);
+  transform: translate(3px, -3px);
+}
+
+/* ---------- footer bar ---------- */
+
+.contact__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  margin-top: clamp(28px, 4vh, 46px);
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--text-3);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact__footer p {
+  margin: 0;
+}
+
+.contact__footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-3);
+  text-decoration: none;
+  transition: color 260ms var(--ease);
+}
+
+.contact__footer a:hover {
+  color: var(--text-1);
+}
+
+.contact__top-arrow {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 260ms var(--ease);
+}
+
+.contact__footer a:hover .contact__top-arrow {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 900px) {
+  .contact__socials {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .contact {
+    justify-content: center;
+  }
+
+  .contact__email {
+    gap: 12px;
+    align-self: stretch;
+    justify-content: space-between;
+    word-break: break-word;
+  }
+
+  .contact__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

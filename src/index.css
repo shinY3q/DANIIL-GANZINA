@@ -1,0 +1,431 @@
+/* ============================================================
+   LAYERS OF LIGHT — design tokens & global system
+   The 45deg chamfer of the DG monogram is the shape language:
+   it cuts buttons, cards and the top edge of every layer.
+   ============================================================ */
+
+:root {
+  /* --- colour ------------------------------------------------ */
+  --ink: #050507;
+  --ink-raised: #0a0a11;
+  --ink-deep: #030304;
+  --paper: #f8f5ff;
+  --lav: #c8a6ff;
+  --violet: #a855f7;
+  --violet-deep: #6d28d9;
+
+  --text-1: #f8f5ff;
+  --text-2: rgba(248, 245, 255, 0.62);
+  --text-3: rgba(248, 245, 255, 0.38);
+  --line: rgba(248, 245, 255, 0.09);
+  --line-lav: rgba(200, 166, 255, 0.28);
+
+  /* --- shape -------------------------------------------------- */
+  --cut: 14px;
+  --slant: clamp(38px, 5.5vw, 92px);
+  --gutter: clamp(24px, 6vw, 120px);
+  --rail: clamp(24px, 4vw, 64px);
+
+  /* --- type --------------------------------------------------- */
+  --font-body: 'General Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Clash Display', 'General Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  --eyebrow: 11px;
+  --step-1: clamp(13px, 0.9vw, 15px);
+  --step0: clamp(15px, 1.05vw, 18px);
+  --step1: clamp(19px, 1.5vw, 24px);
+  --step2: clamp(26px, 2.6vw, 40px);
+  --step3: clamp(34px, 5vw, 76px);
+  --step4: clamp(44px, 8vw, 128px);
+
+  /* --- motion ------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  font-family: var(--font-body);
+  color: var(--text-1);
+  background: var(--ink);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: tabular-nums;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  margin: 0;
+  background: var(--ink);
+}
+
+body {
+  min-height: 100svh;
+  overflow-x: clip;
+}
+
+::selection {
+  color: var(--ink);
+  background: var(--lav);
+}
+
+a,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+* {
+  scrollbar-color: rgba(200, 166, 255, 0.35) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 166, 255, 0.28);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ink-deep);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   SKIP LINK
+   ============================================================ */
+
+.skip-link {
+  position: fixed;
+  z-index: 99;
+  top: 12px;
+  left: 12px;
+  padding: 12px 20px;
+  color: var(--ink);
+  background: var(--lav);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transform: translateY(-160%);
+  transition: transform 240ms var(--ease);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   THE CHAMFER — DG-derived cut, top-right / bottom-left
+   ============================================================ */
+
+.chamfer {
+  position: relative;
+  isolation: isolate;
+  background: var(--chamfer-line, rgba(200, 166, 255, 0.28));
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut)) 0,
+    100% var(--cut),
+    100% 100%,
+    var(--cut) 100%,
+    0 calc(100% - var(--cut))
+  );
+}
+
+.chamfer::before {
+  position: absolute;
+  z-index: -1;
+  inset: 1px;
+  background: var(--chamfer-fill, rgba(10, 10, 17, 0.72));
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut) + 1.5px) 0,
+    100% calc(var(--cut) - 1.5px),
+    100% 100%,
+    calc(var(--cut) - 1.5px) 100%,
+    0 calc(100% - var(--cut) + 1.5px)
+  );
+  transition: background 320ms var(--ease);
+  content: '';
+}
+
+/* ============================================================
+   SHARED PRIMITIVES
+   ============================================================ */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  color: var(--text-3);
+  font-size: var(--eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  width: 26px;
+  height: 1px;
+  background: rgba(200, 166, 255, 0.4);
+  content: '';
+}
+
+.eyebrow--bare::before {
+  display: none;
+}
+
+.section-title {
+  max-width: 18ch;
+  margin: 22px 0 0;
+  font-family: var(--font-display);
+  font-size: var(--step3);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.section-title em {
+  color: var(--lav);
+  font-style: normal;
+}
+
+.lead {
+  max-width: 46ch;
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--step0);
+  line-height: 1.65;
+}
+
+.btn {
+  --cut: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 58px;
+  padding: 0 24px 0 26px;
+  color: var(--text-1);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 220ms var(--ease);
+}
+
+.btn:hover {
+  --chamfer-line: rgba(200, 166, 255, 0.85);
+  --chamfer-fill: rgba(168, 85, 247, 0.16);
+}
+
+/* The one solid element on a page built from hairlines. */
+.btn--primary {
+  --chamfer-line: linear-gradient(120deg, #ded0ff, #a855f7 78%);
+  --chamfer-fill: linear-gradient(120deg, #d9c7ff, #a855f7 78%);
+  color: var(--ink);
+}
+
+.btn--primary:hover {
+  --chamfer-line: linear-gradient(120deg, #f4edff, #c084fc 78%);
+  --chamfer-fill: linear-gradient(120deg, #f0e7ff, #c084fc 78%);
+  color: var(--ink);
+}
+
+.btn--primary .btn__arrow {
+  stroke: var(--ink);
+}
+
+.btn__arrow {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--lav);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 260ms var(--ease);
+}
+
+.btn:hover .btn__arrow {
+  transform: translate(3px, -3px);
+}
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--lav);
+  outline-offset: 4px;
+}
+
+/* ============================================================
+   LAYER STACK — sections are physical sheets that slide over
+   one another. The incoming sheet's top edge is cut on a
+   diagonal, so the layer beneath shows through during the pass.
+   ============================================================ */
+
+.layers {
+  --dwell: 45svh;
+  position: relative;
+  z-index: 1;
+}
+
+/*
+ * Every sheet is sticky inside .layers, so it stays pinned once it reaches the
+ * top. The spacer that follows it is the scroll distance you get to read that
+ * sheet before the next one starts sliding over it.
+ */
+.dwell {
+  display: block;
+  height: var(--dwell);
+}
+
+.layer {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100svh;
+  padding: clamp(112px, 14vh, 168px) var(--gutter) clamp(72px, 10vh, 120px);
+}
+
+.layer__inner {
+  width: 100%;
+  transform: translate3d(0, calc(var(--exit, 0) * -6vh), 0)
+    scale(calc(1 - var(--exit, 0) * 0.055));
+  transform-origin: 50% 30%;
+  opacity: calc(1 - var(--exit, 0));
+  will-change: transform, opacity;
+}
+
+/* Opaque sheets — everything between the two light-facing layers */
+.layer--panel {
+  background: var(
+    --sheet-edge,
+    linear-gradient(
+      100deg,
+      rgba(200, 166, 255, 0.06) 0%,
+      rgba(200, 166, 255, 0.5) 58%,
+      rgba(168, 85, 247, 0.9) 100%
+    )
+  );
+  clip-path: polygon(0 var(--slant), 100% 0, 100% 100%, 0 100%);
+}
+
+.layer--panel::before {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background: var(
+    --sheet,
+    linear-gradient(180deg, #0a0a11 0%, #050507 46%, #030304 100%)
+  );
+  clip-path: polygon(0 calc(var(--slant) + 1.5px), 100% 1.5px, 100% 100%, 0 100%);
+  content: '';
+}
+
+/* Decorative glow bound to the sheet */
+.layer--panel::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(
+    --sheet-glow,
+    radial-gradient(72% 56% at 82% 10%, rgba(109, 40, 217, 0.26), transparent 70%)
+  );
+  clip-path: polygon(0 calc(var(--slant) + 1.5px), 100% 1.5px, 100% 100%, 0 100%);
+  pointer-events: none;
+  content: '';
+}
+
+/* Layers that let the light field through */
+.layer--open {
+  background: transparent;
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 900ms var(--ease), transform 900ms var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Touch: plain stacked sections, no pinning and no dwell. */
+@media (max-width: 800px) {
+  .layer {
+    position: relative;
+    padding-top: clamp(104px, 13vh, 140px);
+  }
+
+  .layer__inner {
+    transform: none;
+    opacity: 1;
+  }
+
+  .dwell {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .layer__inner {
+    transform: none;
+    opacity: 1;
+  }
+}

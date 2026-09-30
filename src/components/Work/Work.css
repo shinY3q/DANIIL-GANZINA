@@ -1,0 +1,216 @@
+.work {
+  --sheet: linear-gradient(180deg, #08070d 0%, #050507 50%, #040406 100%);
+  --sheet-glow: radial-gradient(58% 46% at 12% 6%, rgba(168, 85, 247, 0.22), transparent 68%);
+}
+
+.work__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(30px, 5vh, 56px);
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.work__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.work__note {
+  max-width: 30ch;
+  margin: 0;
+  padding-bottom: 6px;
+  color: var(--text-3);
+  font-size: var(--step-1);
+  line-height: 1.6;
+  text-align: right;
+}
+
+/* ---------- the index ---------- */
+
+.work__list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.work__row {
+  border-bottom: 1px solid var(--line);
+}
+
+.work__link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px minmax(150px, 0.9fr) minmax(0, 1.5fr) minmax(0, 0.85fr) auto;
+  gap: clamp(16px, 2.4vw, 40px);
+  align-items: center;
+  isolation: isolate;
+  padding: clamp(18px, 2.6vh, 30px) clamp(8px, 1.4vw, 22px);
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  transition: padding-left 420ms var(--ease);
+}
+
+/* The row clips its own glow, so draw the focus ring inside it. */
+.work__link:focus-visible {
+  outline-offset: -4px;
+}
+
+.work__row:hover .work__link {
+  padding-left: clamp(18px, 2.4vw, 36px);
+}
+
+/* Tone-keyed wash that fills the row on hover. */
+.work__glow {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--tone, linear-gradient(90deg, rgba(168, 85, 247, 0.16), transparent 62%));
+  opacity: 0;
+  transition: opacity 420ms var(--ease);
+}
+
+.work__row:hover .work__glow,
+.work__link:focus-visible .work__glow {
+  opacity: 1;
+}
+
+.work__row--a { --tone: linear-gradient(90deg, rgba(168, 85, 247, 0.2), rgba(109, 40, 217, 0.05) 55%, transparent 78%); }
+.work__row--b { --tone: linear-gradient(90deg, rgba(96, 165, 250, 0.16), rgba(168, 85, 247, 0.08) 55%, transparent 78%); }
+.work__row--c { --tone: linear-gradient(90deg, rgba(244, 164, 255, 0.16), rgba(168, 85, 247, 0.07) 55%, transparent 78%); }
+.work__row--d { --tone: linear-gradient(90deg, rgba(126, 242, 176, 0.12), rgba(168, 85, 247, 0.1) 55%, transparent 78%); }
+
+.work__index {
+  color: var(--text-3);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  transition: color 320ms var(--ease);
+}
+
+.work__row:hover .work__index {
+  color: var(--lav);
+}
+
+.work__title {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.work__name {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.1vw, 34px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.work__kind {
+  color: var(--text-3);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.work__summary {
+  max-width: 52ch;
+  color: var(--text-2);
+  font-size: var(--step-1);
+  line-height: 1.6;
+}
+
+.work__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.work__tags span {
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  color: var(--text-3);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: border-color 320ms var(--ease), color 320ms var(--ease);
+}
+
+.work__row:hover .work__tags span {
+  border-color: var(--line-lav);
+  color: var(--text-2);
+}
+
+.work__meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--text-3);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+.work__arrow {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 380ms var(--ease), stroke 320ms var(--ease);
+}
+
+.work__row:hover .work__arrow {
+  stroke: var(--lav);
+  transform: translate(4px, -4px);
+}
+
+/* Dim the rest of the index while one row is being read. */
+.work__list:has(.work__row:hover) .work__row:not(:hover) {
+  opacity: 0.42;
+}
+
+.work__row {
+  transition: opacity 380ms var(--ease);
+}
+
+@media (max-width: 1180px) {
+  .work__link {
+    grid-template-columns: 44px minmax(140px, 1fr) minmax(0, 1.6fr) auto;
+  }
+
+  .work__tags {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .work__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .work__note {
+    text-align: left;
+  }
+
+  .work__link {
+    grid-template-columns: 36px minmax(0, 1fr) auto;
+    gap: 12px 16px;
+    padding-inline: 0;
+  }
+
+  .work__summary {
+    display: none;
+  }
+
+  .work__row:hover .work__link {
+    padding-left: 10px;
+  }
+}

@@ -1,0 +1,147 @@
+.process {
+  --sheet: linear-gradient(180deg, #07060c 0%, #050507 60%, #030304 100%);
+  --sheet-glow: radial-gradient(60% 50% at 50% 4%, rgba(109, 40, 217, 0.22), transparent 66%);
+}
+
+.process__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(34px, 6vh, 68px);
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.process__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.process__note {
+  max-width: 34ch;
+  margin: 0;
+  padding-bottom: 6px;
+  color: var(--text-3);
+  font-size: var(--step-1);
+  line-height: 1.6;
+  text-align: right;
+}
+
+/* ---------- the four moves ---------- */
+
+.process__steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 2.6vw, 44px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.process__step {
+  position: relative;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+/* The travelling node on the timeline. */
+.process__marker {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background: var(--lav);
+  transform: rotate(45deg);
+  transition: box-shadow 420ms var(--ease), background-color 420ms var(--ease);
+}
+
+.process__step:hover .process__marker {
+  background: var(--paper);
+  box-shadow: 0 0 18px rgba(200, 166, 255, 0.9);
+}
+
+.process__step::after {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--lav), transparent);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 620ms var(--ease);
+}
+
+.process__step:hover::after {
+  transform: scaleX(1);
+}
+
+.process__index {
+  color: var(--text-3);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+}
+
+.process__name {
+  margin: 14px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.4vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.process__duration {
+  margin: 10px 0 0;
+  color: var(--lav);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.process__summary {
+  margin: 18px 0 0;
+  color: var(--text-2);
+  font-size: var(--step-1);
+  line-height: 1.65;
+}
+
+@media (max-width: 1080px) {
+  .process__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px clamp(20px, 4vw, 44px);
+  }
+}
+
+@media (max-width: 860px) {
+  .process__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .process__note {
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .process__steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+
+  .process__step {
+    padding-top: 22px;
+  }
+
+  .process__summary {
+    margin-top: 12px;
+  }
+}

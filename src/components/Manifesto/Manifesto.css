@@ -1,0 +1,124 @@
+.manifesto {
+  --sheet-glow: radial-gradient(60% 50% at 88% 8%, rgba(109, 40, 217, 0.3), transparent 68%),
+    radial-gradient(50% 40% at 4% 96%, rgba(168, 85, 247, 0.14), transparent 70%);
+}
+
+.manifesto__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 96px) clamp(40px, 6vw, 110px);
+  align-items: start;
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.manifesto__head {
+  grid-column: 1;
+}
+
+.manifesto__title {
+  margin: 26px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.1vw, 62px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.manifesto__line {
+  display: block;
+  overflow: hidden;
+}
+
+.manifesto__line > span {
+  display: block;
+}
+
+.manifesto__line .is-accent {
+  color: var(--lav);
+}
+
+.manifesto__body {
+  display: flex;
+  grid-column: 2;
+  flex-direction: column;
+  gap: 22px;
+  padding-top: clamp(8px, 3vw, 46px);
+}
+
+/* Hairline that ties the column to the sheet edge. */
+.manifesto__body::before {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--line-lav), transparent 70%);
+  content: '';
+}
+
+.manifesto__stats {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: clamp(18px, 4vh, 40px) 0 0;
+  background: var(--line);
+}
+
+.manifesto__stat {
+  padding: clamp(20px, 2.4vw, 30px) clamp(16px, 2vw, 26px);
+  background: var(--ink);
+  transition: background-color 360ms var(--ease);
+}
+
+.manifesto__stat:hover {
+  background: #0c0a14;
+}
+
+.manifesto__stat dt {
+  color: var(--text-3);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.manifesto__stat dd {
+  margin: 12px 0 0;
+  color: var(--text-1);
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.4vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.manifesto__stat dd span {
+  margin-left: 2px;
+  color: var(--lav);
+  font-size: 0.44em;
+  vertical-align: super;
+}
+
+@media (max-width: 1000px) {
+  .manifesto__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .manifesto__head,
+  .manifesto__body {
+    grid-column: 1;
+  }
+
+  .manifesto__body {
+    padding-top: 0;
+  }
+
+  .manifesto__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .manifesto__title {
+    font-size: clamp(27px, 8.4vw, 40px);
+  }
+}

@@ -1,0 +1,136 @@
+.hero {
+  padding-right: clamp(24px, 12vw, 220px);
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: min(56vw, 800px);
+}
+
+/* ---------- logotype ---------- */
+
+.hero__logo-frame {
+  position: relative;
+  width: min(calc(100% + 34px), 730px);
+  margin-left: -34px;
+  aspect-ratio: 5 / 1;
+  /* Wipes open along the same diagonal as the monogram's chamfer. */
+  animation: hero-wipe 1400ms var(--ease) 120ms both;
+}
+
+.hero__logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes hero-wipe {
+  from {
+    clip-path: polygon(0 0, 0 0, -22% 100%, -22% 100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    clip-path: polygon(0 0, 130% 0, 108% 100%, -22% 100%);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero__subtitle {
+  margin: clamp(30px, 4vh, 44px) 0 8px;
+  color: var(--text-1);
+  font-size: var(--step1);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  animation: hero-rise 900ms var(--ease) 520ms both;
+}
+
+.hero__description {
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--step0);
+  line-height: 1.6;
+  animation: hero-rise 900ms var(--ease) 620ms both;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 18px;
+  margin-top: clamp(32px, 4.5vh, 46px);
+  animation: hero-rise 900ms var(--ease) 720ms both;
+}
+
+.hero__actions .btn {
+  min-width: 208px;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 1100px) {
+  .hero__inner {
+    width: min(66vw, 720px);
+  }
+}
+
+@media (max-width: 800px) {
+  .hero {
+    padding-right: 24px;
+  }
+
+  .hero__inner {
+    width: 100%;
+  }
+
+  .hero__logo-frame {
+    width: min(100%, 540px);
+    margin-left: 0;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-self: stretch;
+    gap: 12px;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-height: 720px) and (min-width: 801px) {
+  .hero__logo-frame {
+    width: min(calc(100% + 34px), 660px);
+  }
+
+  .hero__actions .btn {
+    min-height: 52px;
+  }
+}
+
+@media (max-height: 760px) and (max-width: 800px) {
+  .hero__logo-frame {
+    width: min(88%, 460px);
+  }
+}
