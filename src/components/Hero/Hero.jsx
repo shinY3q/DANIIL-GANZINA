@@ -1,7 +1,7 @@
 import { CONTACT, HERO } from '../../data/site.js';
 import './Hero.css';
 
-const FULL_LOGO = '/images/daniil-ganzina-logo.png';
+const FULL_LOGO = `${import.meta.env.BASE_URL}images/daniil-ganzina-logo.png`;
 
 function ArrowIcon() {
   return (

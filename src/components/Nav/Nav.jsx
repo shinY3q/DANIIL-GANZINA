@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { CONTACT, NAV } from '../../data/site.js';
 import './Nav.css';
 
-const NAV_LOGO = '/images/daniil-ganzina-logo-nav.png';
+const NAV_LOGO = `${import.meta.env.BASE_URL}images/daniil-ganzina-logo-nav.png`;
 
 export default function Nav({ activeId }) {
   const [menuOpen, setMenuOpen] = useState(false);
